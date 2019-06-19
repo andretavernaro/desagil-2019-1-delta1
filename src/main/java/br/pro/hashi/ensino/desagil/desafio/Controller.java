@@ -66,8 +66,19 @@ public class Controller implements KeyListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         CpuPlayer cpuPlayer = model.getCpuPlayer();
 
-        cpuPlayer.move();
+        int dist = Math.abs(model.getHumanPlayer().getCol() - model.getTarget().getCol()) + Math.abs(model.getHumanPlayer().getRow() - model.getTarget().getRow());
 
+        int somatabuleiro = model.getBoard().getNumCols() + model.getBoard().getNumRows();
+
+        if (somatabuleiro / dist > 2) {
+            cpuPlayer.movex2();
+            System.out.println(dist);
+            System.out.println(somatabuleiro);
+        } else {
+            cpuPlayer.move();
+            System.out.println(dist);
+            System.out.println(somatabuleiro);
+        }
         view.repaint();
     }
 }
